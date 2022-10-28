@@ -1,21 +1,19 @@
+import datetime
 import json
 import os
 import pickle
 import typing
-import yfinance
-import pandas as pd
-import pandas_ta
-import requests
-import edn_format
-import vectorbt as vbt
-import quantstats
-
-from lib import edn_syntax, logic, traversers, transpilers
-
-
-import datetime
 from zoneinfo import ZoneInfo
 
+import edn_format
+import pandas as pd
+import pandas_ta
+import quantstats
+import requests
+import vectorbt as vbt
+import yfinance
+
+from lib import edn_syntax, logic, transpilers, traversers
 
 UTC_TIMEZONE = ZoneInfo("UTC")
 
@@ -107,6 +105,8 @@ def precompute_indicator(close_series: pd.Series, indicator: str, window_days: i
 def get_symphony(symphony_id: str) -> dict:
 
     # caching
+    if not os.path.exists("data"):
+        os.mkdir("data")
     path = f"data/symphony-{symphony_id}.json"
     if os.path.exists(path):
         return json.load(open(path, 'r'))
