@@ -27,7 +27,7 @@ def date_to_epoch_days(day: datetime.date) -> int:
 assert epoch_days_to_date(19289) == datetime.date(2022, 10, 24)
 
 
-def get_composer_backtest_results(symphony_id: str, start_date: datetime.date, end_date: datetime.date | None = None) -> dict:
+def get_composer_backtest_results(symphony_id: str, start_date: datetime.date, end_date: datetime.date=None) -> dict:
     start_epoch_days = date_to_epoch_days(start_date)
     utc_today = datetime.datetime.now().astimezone(UTC_TIMEZONE).date()
     if end_date:
