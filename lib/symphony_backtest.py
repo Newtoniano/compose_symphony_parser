@@ -30,7 +30,7 @@ assert epoch_days_to_date(19289) == datetime.date(2022, 10, 24)
 def get_composer_backtest_results(symphony_id: str, start_date: datetime.date, end_date: datetime.date | None = None) -> dict:
     start_epoch_days = date_to_epoch_days(start_date)
     utc_today = datetime.datetime.now().astimezone(UTC_TIMEZONE).date()
-    if end_date:
+    if end_date != None:
         end_epoch_days = date_to_epoch_days(end_date)
     payload = "{:uid nil, :start-date-in-epoch-days START_DATE_EPOCH_DAYS, :capital 10000, :apply-taf-fee? true, :symphony-benchmarks [], :slippage-percent 0.0005, :apply-reg-fee? true, :symphony \"SYMPHONY_ID_GOES_HERE\", :ticker-benchmarks []}"
     if end_date:
